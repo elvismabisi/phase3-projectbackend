@@ -1,28 +1,46 @@
 require_relative './application_controller.rb'
+require_relative '../models/user.rb'
+
 class UsersController < ApplicationController
-    # Get all users
-    get "/users" do
-      # code to get all users from the database
-    end
-  
-    # Get a specific user
-    get "/users/:id" do
-      # code to get a specific user from the database
-    end
-  
-    # Create a new user
-    post "/users" do
-      # code to create a new user in the database
-    end
-  
-    # Update a user
-    patch "/users/:id" do
-      # code to update a user in the database
-    end
-  
-    # Delete a user
-    delete "/users/:id" do
-      # code to delete a user from the database
+  # Get all users
+  get "/users" do
+    @users = User.all
+    @users.to_json
+  end
+
+  # Get a specific user
+  get "/users/:id" do
+    @user = User.find(params[:id])
+    @user.to_json
+  end
+
+  # Create a new user
+  post "/users" do
+    @user = User.new(params)
+    if @user.save
+      @user.to_json
+    else
+      {error: "Failed to create user"}.to_json
     end
   end
-  
+
+  # Update a user
+  patch "/users/:id" do
+    @user = User.find(params[:id])
+    if @user.update(params)
+      @user.to_json
+    else
+      {error: "Failed to update user"}.to_json
+    end
+  end
+
+  # Delete a user
+  delete "/users/:id" do
+    @user = User.find(params[:id])
+    if @user.destroy
+      {message: "User deleted"}.to_json
+    else
+      {error: "Failed to delete user"}.to_json
+    end
+  end
+end
