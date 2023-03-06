@@ -15,11 +15,13 @@ require_relative 'models/project_user'
 require_relative 'controllers/users_controller'
 require_relative 'controllers/projects_controller'
 require_relative 'controllers/application_controller'
+require_relative 'controllers/status_update_controller'
 
 # enable sessions
 enable :sessions
 
-# define routes
+# enable debug logging
+set :logging, true
 
 # welcome page
 get '/' do
@@ -27,40 +29,40 @@ get '/' do
 end
 
 # user signup
-post '/signup', to: 'user#create'
+post '/signup', to: 'users#create'
 
 # user login
-post '/login', to: 'user#login'
+post '/login', to: 'users#login'
 
 # user logout
-post '/logout', to: 'user#logout'
+post '/logout', to: 'users#logout'
 
 # list all projects
-get '/projects', to: 'project#index'
+get '/projects', to: 'projects#index'
 
 # create a new project
-post '/projects', to: 'project#create'
+post '/projects', to: 'projects#create'
 
 # show details of a specific project
-get '/projects/:id', to: 'project#show'
+get '/projects/:id', to: 'projects#show'
 
 # update a project
-patch '/projects/:id', to: 'project#update'
+patch '/projects/:id', to: 'projects#update'
 
 # delete a specific project by id
-delete '/projects/:id', to: 'project#delete'
+delete '/projects/:id', to: 'projects#delete'
 
 # create a new status update for a project
-post '/projects/:project_id/status_updates', to: 'status_update#create'
+post '/projects/:project_id/status_updates', to: 'status_updates#create'
 
 # list all status updates for a project
-get '/projects/:project_id/status_updates', to: 'status_update#index'
+get '/projects/:project_id/status_updates', to: 'status_updates#index'
 
 # show details of a specific status update
-get '/status_updates/:id', to: 'status_update#show'
+get '/status_updates/:id', to: 'status_updates#show'
 
 # update a status update
-patch '/status_updates/:id', to: 'status_update#update'
+patch '/status_updates/:id', to: 'status_updates#update'
 
 # delete a specific status update by id
-delete '/status_updates/:id', to: 'status_update#delete'
+delete '/status_updates/:id', to: 'status_updates#delete'
