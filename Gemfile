@@ -8,7 +8,7 @@ gem "sinatra", "~> 2.1"
 gem 'react-sinatra'
 
 # TheRubyRacer and mini_racer are JavaScript runtimes for Ruby that allow us to execute JavaScript code in our app
-gem 'therubyracer'
+gem 'execjs'
 gem 'mini_racer'
 
 # Sinatra-Cross-Origin is a middleware that handles CORS requests in Sinatra apps
