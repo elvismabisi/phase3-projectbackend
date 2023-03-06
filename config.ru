@@ -1,4 +1,4 @@
-require './app'
+require './app/app'
 require './controllers/application_controller'
 require './controllers/projects_controller'
 require './controllers/users_controller'
