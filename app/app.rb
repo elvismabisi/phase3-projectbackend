@@ -12,9 +12,9 @@ require_relative 'models/status_update'
 require_relative 'models/project_user'
 
 # load controllers
-require_relative 'controllers/user_controller'
-require_relative 'controllers/project_controller'
-require_relative 'controllers/status_update_controller'
+require_relative 'controllers/users_controller'
+require_relative 'controllers/projects_controller'
+require_relative 'controllers/application_controller'
 
 # enable sessions
 enable :sessions
