@@ -60,7 +60,10 @@ class ApplicationController < Sinatra::Base
       skill = User.find(params[:id]).skills
       skill.find(params[:id2]).destroy
     end
-  
+    get '/' do
+        "Hello World"
+      end
+
   
   
   end
