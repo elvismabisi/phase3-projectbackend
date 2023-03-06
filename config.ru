@@ -1,12 +1,16 @@
-require './app/app'
-require './controllers/application_controller'
-require './controllers/projects_controller'
-require './controllers/users_controller'
-require './controllers/status_update_controller'
+require_relative "./config/environment"
 
-use ApplicationController
-use ProjectsController
-use UsersController
-use StatusUpdateController
+# Allow CORS (Cross-Origin Resource Sharing) requests
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
+  end
+end
 
-run Sinatra::Application
+# Parse JSON from the request body into the params hash
+use Rack::JSONBodyParser
+
+# Our application
+use UserController
+run ApplicationController
